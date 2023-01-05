@@ -37,19 +37,12 @@ Neka je n = |V| i m = |E|
 Neka je x_i binarna varijabla koja označava da li je čvor `i` uključen u dominirajući skup (tada x_i = 1), u suprotnom (x_i = 0)
 Cilj je minimizovati sumu težina onih čvorova koji se nalaze u dominirajućem skupu.
             min sum(w_i * x_i) for i in V
-
-```math
-#TODO
-```
   
 
 gdje sa w_i označavamo težinu čvora i.
 
 Ogranicčnja obezbijeđuju da svaki čvor u grafu može biti dosegnut iz najmanje jednog čvora iz dominirajućeg skupa.
             sum(x_j for (i,j) in E) >= x_i for i in V
-```math
-# TOOD
-```
 
 ### Zadatak
 1) Definicija prostora pretrage, funkcije cilja, funkcija prilagodljivosti (po mogućnosti), komponente rješenja.
