@@ -4,10 +4,10 @@
 * [Opis projekta](#opis-projekta)
     * [Problem](#problem)
     * [Zadatak](#zadatak)
-* [Struktura repozitorijuma](#struktura-repozitorijuma-)
+* [Struktura repozitorijuma](#struktura-repozitorijuma)
 * [Rezultati](#rezultati)
 * [Literatura](#literatura)
-* [Korisni linkovi](#neki-korisni-linkovi-)
+* [Korisni linkovi](#neki-korisni-linkovi)
 * [TODO lista](#todo-lista)
 * [Licenca](#licenca)
 
