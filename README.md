@@ -21,36 +21,35 @@
 ### Problem
 U teoriji grafova, minimum weighted directed dominating set (MWDDS) problem je optimizacioni problem koji se odnosi na
 pronalaženje najmanjeg podskupa čvorova u usmjerenom težinskom grafu (težine su na čvorovima) tako da svaki drugi čvor 
-tog grafa može biti dosegnut iz najmanje jednog čvora koji se nalazi u tom podskupu. Takav podskup se naziva dominirajući skup. 
+tog grafa može biti dosegnut iz najmanje jednog čvora koji se nalazi u tom podskupu. Takav podskup se naziva dominirajući skup.   
  
 MWDDS problem je NP težak problem, što znači da ga je teško riješiti i da nije poznat efikasan algoritam za pronalaženje tačnog rješenja. Ali je moguće pronaći približna rješenja različitim pristupima.
-Ovaj problem ima mnogo praktične primjene, kao što je dizajniranje i analiza telekomunikacionih mreža, npr. može se koristiti za pronalaženje najmanjeg skupa čvorova koji se trebaju povezati u mrežu kako bi se osigurala pokrivenost i efikasnost mreže.
+Ovaj problem ima mnogo praktične primjene, kao što je dizajniranje i analiza telekomunikacionih mreža, npr. može se koristiti za pronalaženje najmanjeg skupa čvorova koji se trebaju povezati u mrežu kako bi se osigurala pokrivenost i efikasnost mreže.  
 
 Prvi od pristup rješavanju MWDDS problema je korištenje heurističkog algoritma, kao što je pohlepno ili lokalno pretraživanje,
 za pronalaženje približnog rješenja. Heuristički algoritmi mogu biti brzi u pronalasku rješenja, ali ne garantuju da će 
-to rješenje biti optimalno.
+to rješenje biti optimalno.  
 
-Drugi pristup za rješavanju ovog problema je putem Integer linear programming (ILP)
-ILP model možemo formulisati:
-G=(V, E) je usmjereni graf, gdje je V skup čvorova, a E je skup grana.
-Neka je n = |V| i m = |E|
-Neka je x_i binarna varijabla koja označava da li je čvor `i` uključen u dominirajući skup (tada x_i = 1), u suprotnom (x_i = 0)
-Cilj je minimizovati sumu težina onih čvorova koji se nalaze u dominirajućem skupu.
-            min sum(w_i * x_i) for i in V
+Drugi pristup za rješavanju ovog problema je putem Integer linear programming (ILP).  
+ILP model možemo formulisati:  
+* G=(V, E) je usmjereni graf, gdje je V skup čvorova, a E je skup grana.
+* Neka je n = |V| i m = |E|
+* Neka je $x_i$ binarna varijabla koja označava da li je čvor *i* uključen u dominirajući skup (tada $x_i$ = 1), u suprotnom ( $x_i$ = 0)  
 
-```math
-#TODO
-```
+Cilj je minimizovati sumu težina onih čvorova koji se nalaze u dominirajućem skupu.  
   
+$$min (\sum_{i}^{V} w_i * x_i)$$
 
-gdje sa w_i označavamo težinu čvora i.
 
-Ogranicčnja obezbijeđuju da svaki čvor u grafu može biti dosegnut iz najmanje jednog čvora iz dominirajućeg skupa.
-            sum(x_j for (i,j) in E) >= x_i for i in V
-```math
-# TOOD
-```
+gdje sa $w_i$ označavamo težinu čvora *i*.  
 
+Ogranicčnja obezbijeđuju da svaki čvor u grafu može biti dosegnut iz najmanje jednog čvora iz dominirajućeg skupa.  
+
+
+<p align="center">
+$\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
+</p>
+  
 ### Zadatak
 1) Definicija prostora pretrage, funkcije cilja, funkcija prilagodljivosti (po mogućnosti), komponente rješenja.
 2) Pohlepni pristup rješavanju problema gdje treba definisati  pohlepnu funkciju, dodavanje komponente u rješenje.
