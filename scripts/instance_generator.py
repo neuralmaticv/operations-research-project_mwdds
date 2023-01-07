@@ -1,16 +1,16 @@
 import random
 
 """
-Skripta za generisanje instanci.
-Cvorovi se upisuju u fajl u formatu: vertex_id vertex_weight
-Grane se u fajl upisuju u formatu: source_vertex target_vertex
+Skripta za generisanje instanci, instance se cuvaju u txt formatu
+Cvorovi se upisuju u formatu: vertex_id vertex_weight
+Grane se upisuju u formatu: source_vertex target_vertex
 """
 
 
 def generate_random_weighted_graph(num_vertices, num_instances):
     if num_vertices <= 100:
         dim = "0"
-    elif 100 < num_vertices < 1000:
+    elif 100 < num_vertices < 400:
         dim = "1"
     else:
         dim = "2"
@@ -39,5 +39,7 @@ def generate_random_weighted_graph(num_vertices, num_instances):
 
 
 if __name__ == '__main__':
-    generate_random_weighted_graph(1000, 10)
+    generate_random_weighted_graph(5, 10)
+    generate_random_weighted_graph(300, 10)
+    generate_random_weighted_graph(500, 10)
     print("Generisanje je zavrseno.")
