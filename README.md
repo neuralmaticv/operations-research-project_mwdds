@@ -34,14 +34,14 @@ Drugi pristup za rješavanju ovog problema je putem Integer linear programming (
 ILP model možemo formulisati:  
 * G=(V, E) je usmjereni graf, gdje je V skup čvorova, a E je skup grana.
 * Neka je n = |V| i m = |E|
-* Neka je $x_i$ binarna varijabla koja označava da li je čvor `i` uključen u dominirajući skup (tada $x_i$ = 1), u suprotnom ( $x_i$ = 0)  
+* Neka je $x_i$ binarna varijabla koja označava da li je čvor *i* uključen u dominirajući skup (tada $x_i$ = 1), u suprotnom ( $x_i$ = 0)  
 
 Cilj je minimizovati sumu težina onih čvorova koji se nalaze u dominirajućem skupu.  
   
 $$min (\sum_{i}^{V} w_i * x_i)$$
 
 
-gdje sa $w_i$ označavamo težinu čvora i.  
+gdje sa $w_i$ označavamo težinu čvora *i*.  
 
 Ogranicčnja obezbijeđuju da svaki čvor u grafu može biti dosegnut iz najmanje jednog čvora iz dominirajućeg skupa.  
 
