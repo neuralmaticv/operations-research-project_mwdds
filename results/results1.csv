@@ -1,0 +1,71 @@
+Instances,Greedy algorithm,Variable neighborhood search (VNS),PuLP linar programming
+"Instance 1lvl
+|V| = 300
+|E| = 44503","|Ds| = 8
+weight = 198
+T(s) = 0.248",0,"|Ds| = 5
+weight = 56.0
+T(s) = 2.373"
+"Instance 1lvl
+|V| = 300
+|E| = 44844","|Ds| = 8
+weight = 268
+T(s) = 0.249",0,"|Ds| = 5
+weight = 63.0
+T(s) = 8.386"
+"Instance 1lvl
+|V| = 300
+|E| = 44772","|Ds| = 8
+weight = 193
+T(s) = 0.277",0,"|Ds| = 5
+weight = 60.0
+T(s) = 8.269"
+"Instance 1lvl
+|V| = 300
+|E| = 44663","|Ds| = 7
+weight = 143
+T(s) = 0.294",0,"|Ds| = 5
+weight = 59.0
+T(s) = 6.424"
+"Instance 1lvl
+|V| = 300
+|E| = 44667","|Ds| = 8
+weight = 220
+T(s) = 0.521",0,"|Ds| = 5
+weight = 67.0
+T(s) = 11.908"
+"Instance 1lvl
+|V| = 300
+|E| = 44759","|Ds| = 8
+weight = 193
+T(s) = 0.274",0,"|Ds| = 6
+weight = 70.0
+T(s) = 7.882"
+"Instance 1lvl
+|V| = 300
+|E| = 44849","|Ds| = 8
+weight = 206
+T(s) = 0.267",0,"|Ds| = 5
+weight = 70.0
+T(s) = 5.957"
+"Instance 1lvl
+|V| = 300
+|E| = 44768","|Ds| = 8
+weight = 252
+T(s) = 0.226",0,"|Ds| = 5
+weight = 54.0
+T(s) = 5.307"
+"Instance 1lvl
+|V| = 300
+|E| = 44614","|Ds| = 8
+weight = 167
+T(s) = 0.351",0,"|Ds| = 5
+weight = 65.0
+T(s) = 7.253"
+"Instance 1lvl
+|V| = 300
+|E| = 45096","|Ds| = 8
+weight = 227
+T(s) = 0.358",0,"|Ds| = 5
+weight = 59.0
+T(s) = 6.387"
