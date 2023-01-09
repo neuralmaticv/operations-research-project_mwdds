@@ -53,7 +53,7 @@ $\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
 ### Zadatak
 1) Definicija prostora pretrage, funkcije cilja, funkcija prilagodljivosti (po mogućnosti), komponente rješenja.
 2) Pohlepni pristup rješavanju problema gdje treba definisati  pohlepnu funkciju, dodavanje komponente u rješenje.
-3) Genetski ili VNS pristup
+3) Odabrati genetski ili VNS pristup
      - Za genentski: definisati jedinku, operator selekcije, ukrštanja, operator mutacije.
      - Za VNS: definisati lokalnu pretragu, strukture okolina, objasniti zašto su baš takve uzete.
 
@@ -80,15 +80,20 @@ $\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
 
 ### Neki korisni linkovi:
 
+* [Google Colab](https://colab.research.google.com/)
+
+* [Network Repository - An Interactive Scientific Network Data Repository](https://networkrepository.com/)
+
+* [Stanford Large Network Dataset Collection](https://snap.stanford.edu/data/)
+
 * [NetworkX package](https://networkx.org/documentation/stable/index.html)
 
 * [igraph package](https://igraph.readthedocs.io/en/0.10.2/index.html)
 
 * [graph tool package](https://graph-tool.skewed.de/)
 
-* [Stanford Large Network Dataset Collection](https://snap.stanford.edu/data/)
-
 * [Sage](https://doc.sagemath.org/html/en/reference/index.html)
+
 
 ### TODO lista
 1. Uraditi implementaciju algoritama u C++
