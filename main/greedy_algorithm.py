@@ -1,11 +1,19 @@
+"""
+Inicijalizujemo prazan skup za dominirajuce cvorove
+Sortiramo sve cvorove u opadajucem poretku na osnovu tezine
+Prolazimo kroz sve cvorove:
+    Ako je svaki cvor, koji je dostizan iz i, dostizan iz cvora koji je u dominirajucem skupu, preskoci taj cvor.
+    U suprotnom, dodaj cvor i u dominirajuci skup
+Vrati informacije o dominirajucem skupu i tezini cvorova
+"""
 
 
-def greedy_mwds(vertices, edges):
+def greedy_solver(vertices, edges):
     # dominirajuci skup
-    domination_set = set()
+    domination_set = []
 
-    # sortiranje cvorova po tezini, u opadajucem poretku
-    nodes = sorted(vertices, key=lambda x: vertices[x], reverse=True)
+    # sortiranje cvorova po tezini, u neopadajucem poretku
+    nodes = sorted(vertices, key=lambda x: vertices[x])
 
     # "pomocni skup" za pracenje preostalih cvorova
     remaining_vertices = set(nodes)
@@ -21,7 +29,7 @@ def greedy_mwds(vertices, edges):
                 min_vertex = v
 
         # Dodajemo odabrani cvor u dominirajuci skup
-        domination_set.add(min_vertex)
+        domination_set.append(min_vertex)
 
         # Uklanjamo odabrani cvor i njegove susjede iz preostalih cvorova
         remaining_vertices = remove_vertices(min_vertex, remaining_vertices, get_successors(min_vertex, remaining_vertices, edges))
@@ -42,7 +50,7 @@ def get_successors(u, vertices, edges):
 
 
 # Funkcija koja uklanja susjedne cvorove cvora u
-# Implementirana su dva nacina zbog lakse implementacije algoritma
+# Implementirana su dva nacina zbog razlicitih ulaznih podataka
 def remove_vertices(u, vertices, successors):
     if isinstance(vertices, dict):
         for v in successors:

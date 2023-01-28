@@ -1,6 +1,6 @@
 from pulp import *
 
-def lp_model(vertices_w, edges):
+def ilp_solver(vertices_w, edges):
     vertices = list(vertices_w.keys())
 
     model = LpProblem("Minimum Weighted Directed Domination Set", LpMinimize)
