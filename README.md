@@ -84,6 +84,8 @@ $\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
 
 * [Network Repository - An Interactive Scientific Network Data Repository](https://networkrepository.com/)
 
+* [The House of Graphs - Database of interesting graphs](https://houseofgraphs.org/)
+
 * [Stanford Large Network Dataset Collection](https://snap.stanford.edu/data/)
 
 * [NetworkX package](https://networkx.org/documentation/stable/index.html)
@@ -95,11 +97,10 @@ $\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
 * [Sage](https://doc.sagemath.org/html/en/reference/index.html)
 
 
-### TODO lista
+### TODO lista:
 1. Uraditi implementaciju algoritama u C++
-2. Poboljšati neke kodove
-3. Probati sve algoritme na većim dimenzijama problema
-4. Istražiti i iskoristiti neke pakete koji su navedeni u dijelu [korisni linkovi](#neki-korisni-linkovi-)
+2. Dodatno poboljšati implementacije nekih algoritama
+3. Dodatno istražiti i iskoristiti pakete koji su navedeni u dijelu [korisni linkovi](#neki-korisni-linkovi-)
 
 ### Licenca
 TODO: Za dodati.
