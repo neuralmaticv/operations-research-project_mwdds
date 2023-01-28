@@ -1,71 +1,49 @@
-Instances,Greedy algorithm,Variable neighborhood search (VNS),PuLP linar programming
-"Instance 2lvl
+Instances,Greedy algorithm,ILP,Genetic algorithm
+"brock400_2
+|V| = 400
+|E| = 59786","|Ds| = 20
+weight = 542
+T(s) = 2.451","|Ds| = 4
+weight = 167.0
+T(s) = 1.143","|Ds| = 172
+mean = 8475.9
+max = 8920
+min = 7798
+sd = 303.068
+mean(T) = 602.497"
+"brock400_3
+|V| = 400
+|E| = 59681","|Ds| = 15
+weight = 356
+T(s) = 1.681","|Ds| = 4
+weight = 107.0
+T(s) = 1.225","|Ds| = 170
+mean = 8149.6
+max = 8665
+min = 7475
+sd = 369.999
+mean(T) = 608.389"
+"brock400_4
+|V| = 400
+|E| = 59765","|Ds| = 15
+weight = 327
+T(s) = 1.761","|Ds| = 4
+weight = 105.0
+T(s) = 1.162","|Ds| = 169
+mean = 8001.6
+max = 8416
+min = 7331
+sd = 269.147
+mean(T) = 607.957"
+"c-fat500-1
 |V| = 500
-|E| = 124358","|Ds| = 9
-weight = 189
-T(s) = 2.029",0,"|Ds| = 6
-weight = 63.0
-T(s) = 86.627"
-"Instance 2lvl
-|V| = 500
-|E| = 125145","|Ds| = 10
-weight = 301
-T(s) = 1.401",0,"|Ds| = 6
-weight = 70.0
-T(s) = 64.363"
-"Instance 2lvl
-|V| = 500
-|E| = 124658","|Ds| = 8
-weight = 169
-T(s) = 1.344",0,"|Ds| = 6
-weight = 65.0
-T(s) = 64.949"
-"Instance 2lvl
-|V| = 500
-|E| = 124685","|Ds| = 8
-weight = 196
-T(s) = 1.513",0,"|Ds| = 5
-weight = 61.0
-T(s) = 57.462"
-"Instance 2lvl
-|V| = 500
-|E| = 125144","|Ds| = 8
-weight = 159
-T(s) = 1.765",0,"|Ds| = 6
-weight = 66.0
-T(s) = 138.776"
-"Instance 2lvl
-|V| = 500
-|E| = 124848","|Ds| = 10
-weight = 376
-T(s) = 1.117",0,"|Ds| = 6
-weight = 71.0
-T(s) = 54.408"
-"Instance 2lvl
-|V| = 500
-|E| = 125377","|Ds| = 9
-weight = 269
-T(s) = 1.507",0,"|Ds| = 6
-weight = 70.0
-T(s) = 88.341"
-"Instance 2lvl
-|V| = 500
-|E| = 124917","|Ds| = 9
-weight = 242
-T(s) = 1.386",0,"|Ds| = 6
-weight = 67.0
-T(s) = 95.684"
-"Instance 2lvl
-|V| = 500
-|E| = 124613","|Ds| = 9
-weight = 253
-T(s) = 1.228",0,"|Ds| = 6
-weight = 70.0
-T(s) = 72.351"
-"Instance 2lvl
-|V| = 500
-|E| = 124815","|Ds| = 9
-weight = 297
-T(s) = 1.536",0,"|Ds| = 6
-weight = 64.0
-T(s) = 56.132"
+|E| = 4459","|Ds| = 113
+weight = 3710
+T(s) = 1.348","|Ds| = 41
+weight = 1693.0
+T(s) = 0.129","|Ds| = 227
+mean = 10283.1
+max = 10894
+min = 9924
+sd = 271.267
+mean(T) = 65.165"

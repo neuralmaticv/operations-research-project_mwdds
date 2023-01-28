@@ -1,71 +1,133 @@
-Instances,Greedy algorithm,Variable neighborhood search (VNS),PuLP linar programming
-"Instance 0lvl
+Instances,Greedy algorithm,ILP,Genetic algorithm
+"instance_10_39
+|V| = 10
+|E| = 39","|Ds| = 3
+weight = 75
+T(s) = 0.000","|Ds| = 2
+weight = 66.0
+T(s) = 0.046","|Ds| = 2
+mean = 94.1
+max = 136
+min = 46
+sd = 24.497
+mean(T) = 0.143"
+"instance_10_45
+|V| = 10
+|E| = 45","|Ds| = 3
+weight = 82
+T(s) = 0.000","|Ds| = 3
+weight = 82.0
+T(s) = 0.084","|Ds| = 2
+mean = 108.4
+max = 141
+min = 62
+sd = 29.864
+mean(T) = 0.118"
+"instance_10_51
+|V| = 10
+|E| = 51","|Ds| = 3
+weight = 119
+T(s) = 0.000","|Ds| = 1
+weight = 45.0
+T(s) = 0.006","|Ds| = 3
+mean = 130.7
+max = 161
+min = 108
+sd = 16.977
+mean(T) = 0.117"
+"instance_15_102
+|V| = 15
+|E| = 102","|Ds| = 4
+weight = 141
+T(s) = 0.000","|Ds| = 3
+weight = 103.0
+T(s) = 0.015","|Ds| = 4
+mean = 219.5
+max = 278
+min = 158
+sd = 40.453
+mean(T) = 0.206"
+"instance_15_109
+|V| = 15
+|E| = 109","|Ds| = 5
+weight = 214
+T(s) = 0.000","|Ds| = 2
+weight = 65.0
+T(s) = 0.006","|Ds| = 2
+mean = 201.0
+max = 273
+min = 58
+sd = 63.236
+mean(T) = 0.219"
+"instance_50_1184
+|V| = 50
+|E| = 1184","|Ds| = 6
+weight = 191
+T(s) = 0.002","|Ds| = 3
+weight = 99.0
+T(s) = 0.084","|Ds| = 19
+mean = 886.3
+max = 991
+min = 761
+sd = 71.778
+mean(T) = 3.85"
+"instance_50_1221
+|V| = 50
+|E| = 1221","|Ds| = 7
+weight = 246
+T(s) = 0.002","|Ds| = 4
+weight = 95.0
+T(s) = 0.096","|Ds| = 16
+mean = 936.7
+max = 1114
+min = 707
+sd = 112.99
+mean(T) = 3.935"
+"instance_5_11
 |V| = 5
-|E| = 6","|Ds| = 2
-weight = 104
-T(s) = 0.000",0,"|Ds| = 2
-weight = 104.0
-T(s) = 0.008"
-"Instance 0lvl
+|E| = 11","|Ds| = 2
+weight = 82
+T(s) = 0.000","|Ds| = 2
+weight = 53.0
+T(s) = 0.009","|Ds| = 2
+mean = 55.8
+max = 60
+min = 53
+sd = 3.429
+mean(T) = 0.066"
+"instance_5_6
+|V| = 5
+|E| = 6","|Ds| = 3
+weight = 107
+T(s) = 0.000","|Ds| = 3
+weight = 107.0
+T(s) = 0.042","|Ds| = 2
+mean = 106.3
+max = 154
+min = 82
+sd = 22.707
+mean(T) = 0.064"
+"instance_5_9
 |V| = 5
 |E| = 9","|Ds| = 3
-weight = 135
-T(s) = 0.000",0,"|Ds| = 2
-weight = 108.0
-T(s) = 0.007"
-"Instance 0lvl
-|V| = 5
-|E| = 10","|Ds| = 4
-weight = 122
-T(s) = 0.000",0,"|Ds| = 1
-weight = 37.0
-T(s) = 0.006"
-"Instance 0lvl
-|V| = 5
-|E| = 9","|Ds| = 2
-weight = 97
-T(s) = 0.000",0,"|Ds| = 2
-weight = 88.0
-T(s) = 0.007"
-"Instance 0lvl
-|V| = 5
-|E| = 12","|Ds| = 2
-weight = 110
-T(s) = 0.000",0,"|Ds| = 2
-weight = 110.0
-T(s) = 0.008"
-"Instance 0lvl
-|V| = 5
-|E| = 10","|Ds| = 2
-weight = 120
-T(s) = 0.000",0,"|Ds| = 2
-weight = 52.0
-T(s) = 0.005"
-"Instance 0lvl
-|V| = 5
-|E| = 7","|Ds| = 3
-weight = 197
-T(s) = 0.000",0,"|Ds| = 2
-weight = 144.0
-T(s) = 0.005"
-"Instance 0lvl
-|V| = 5
-|E| = 12","|Ds| = 1
-weight = 13
-T(s) = 0.000",0,"|Ds| = 1
-weight = 13.0
-T(s) = 0.005"
-"Instance 0lvl
-|V| = 5
-|E| = 12","|Ds| = 2
-weight = 57
-T(s) = 0.000",0,"|Ds| = 2
-weight = 57.0
-T(s) = 0.005"
-"Instance 0lvl
-|V| = 5
-|E| = 12","|Ds| = 3
-weight = 132
-T(s) = 0.000",0,"|Ds| = 2
-weight = 112.0
-T(s) = 0.009"
+weight = 108
+T(s) = 0.000","|Ds| = 2
+weight = 76.0
+T(s) = 0.005","|Ds| = 2
+mean = 66.5
+max = 100
+min = 61
+sd = 11.604
+mean(T) = 0.066"
+"instance_9_12
+|V| = 9
+|E| = 12","|Ds| = 4
+weight = 153
+T(s) = 0.000","|Ds| = 4
+weight = 153.0
+T(s) = 0.006","|Ds| = 5
+mean = 260.4
+max = 318
+min = 218
+sd = 31.951
+mean(T) = 0.112"
