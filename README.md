@@ -20,11 +20,14 @@
 
 ### Problem
 U teoriji grafova, minimum weighted directed dominating set (MWDDS) problem je optimizacioni problem koji se odnosi na
-pronalaženje najmanjeg podskupa čvorova u usmjerenom težinskom grafu (težine su na čvorovima) tako da svaki drugi čvor 
+pronalaženje najmanjeg podskupa čvorova u usmjerenom težinskom grafu (težine su na čvorovima) tako da svaki čvor 
 tog grafa može biti dosegnut iz najmanje jednog čvora koji se nalazi u tom podskupu. Takav podskup se naziva dominirajući skup.   
  
 MWDDS problem je NP težak problem, što znači da ga je teško riješiti i da nije poznat efikasan algoritam za pronalaženje tačnog rješenja. Ali je moguće pronaći približna rješenja različitim pristupima.
-Ovaj problem ima mnogo praktične primjene, kao što je dizajniranje i analiza telekomunikacionih mreža, npr. može se koristiti za pronalaženje najmanjeg skupa čvorova koji se trebaju povezati u mrežu kako bi se osigurala pokrivenost i efikasnost mreže.  
+Ovaj problem ima mnogo praktičnih primjena:
+1. Dizajniranje i analiza telekomunikacionih mreža - npr. može se koristiti za pronalaženje najmanjeg skupa pristupnih tačaka kako bi se osigurala pokrivenost i efikasnost mreže (i slični problemi iz drugih oblasti gdje je potrebno pronaći neku grupu tačaka);
+2. Dizajniranje VLSI integrisanih kola;
+3. Bioinformatici, itd. 
 
 Prvi od pristup rješavanju MWDDS problema je korištenje heurističkog algoritma, kao što je pohlepno ili lokalno pretraživanje,
 za pronalaženje približnog rješenja. Heuristički algoritmi mogu biti brzi u pronalasku rješenja, ali ne garantuju da će 
@@ -84,6 +87,8 @@ $\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
 
 * [Network Repository - An Interactive Scientific Network Data Repository](https://networkrepository.com/)
 
+* [The House of Graphs - Database of interesting graphs](https://houseofgraphs.org/)
+
 * [Stanford Large Network Dataset Collection](https://snap.stanford.edu/data/)
 
 * [NetworkX package](https://networkx.org/documentation/stable/index.html)
@@ -95,11 +100,10 @@ $\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
 * [Sage](https://doc.sagemath.org/html/en/reference/index.html)
 
 
-### TODO lista
+### TODO lista:
 1. Uraditi implementaciju algoritama u C++
-2. Poboljšati neke kodove
-3. Probati sve algoritme na većim dimenzijama problema
-4. Istražiti i iskoristiti neke pakete koji su navedeni u dijelu [korisni linkovi](#neki-korisni-linkovi-)
+2. Dodatno poboljšati implementacije nekih algoritama
+3. Dodatno istražiti i iskoristiti pakete koji su navedeni u dijelu [korisni linkovi](#neki-korisni-linkovi-)
 
 ### Licenca
 TODO: Za dodati.
