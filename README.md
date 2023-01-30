@@ -85,6 +85,8 @@ $\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
 
 * [Google Colab](https://colab.research.google.com/)
 
+* [Generator for docstrings](https://github.com/airtai/docstring-gen)
+
 * [Network Repository - An Interactive Scientific Network Data Repository](https://networkrepository.com/)
 
 * [The House of Graphs - Database of interesting graphs](https://houseofgraphs.org/)
