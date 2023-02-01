@@ -24,16 +24,12 @@ pronalaženje najmanjeg podskupa čvorova u usmjerenom težinskom grafu (težine
 tog grafa može biti dosegnut iz najmanje jednog čvora koji se nalazi u tom podskupu. Takav podskup se naziva dominirajući skup.   
  
 MWDDS problem je NP težak problem, što znači da ga je teško riješiti i da nije poznat efikasan algoritam za pronalaženje tačnog rješenja. Ali je moguće pronaći približna rješenja različitim pristupima.
-Ovaj problem ima mnogo praktičnih primjena:
-1. Dizajniranje i analiza telekomunikacionih mreža - npr. može se koristiti za pronalaženje najmanjeg skupa pristupnih tačaka kako bi se osigurala pokrivenost i efikasnost mreže (i slični problemi iz drugih oblasti gdje je potrebno pronaći neku grupu tačaka);
-2. Dizajniranje VLSI integrisanih kola;
-3. Bioinformatici, itd. 
 
-Prvi od pristup rješavanju MWDDS problema je korištenje heurističkog algoritma, kao što je pohlepno ili lokalno pretraživanje,
+Prvi pristup rješavanju MWDDS problema je korištenje heurističkog algoritma, kao što je pohlepno ili lokalno pretraživanje,
 za pronalaženje približnog rješenja. Heuristički algoritmi mogu biti brzi u pronalasku rješenja, ali ne garantuju da će 
 to rješenje biti optimalno.  
 
-Drugi pristup za rješavanju ovog problema je putem Integer linear programming (ILP).  
+Drugi pristup za rješavanje ovog problema je putem Integer linear programming (ILP).  
 ILP model možemo formulisati:  
 * G=(V, E) je usmjereni graf, gdje je V skup čvorova, a E je skup grana.
 * Neka je n = |V| i m = |E|
@@ -46,13 +42,21 @@ $$min (\sum_{i}^{V} w_i * x_i)$$
 
 gdje sa $w_i$ označavamo težinu čvora *i*.  
 
-Ogranicčnja obezbijeđuju da svaki čvor u grafu može biti dosegnut iz najmanje jednog čvora iz dominirajućeg skupa.  
+Ograničnja obezbjeđuju da svaki čvor u grafu može biti dosegnut iz najmanje jednog čvora iz dominirajućeg skupa.  
 
 
 <p align="center">
 $\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
 </p>
   
+<br>
+Ovaj problem ima mnogo praktičnih primjena:  
+
+1. Dizajniranje i analiza telekomunikacionih mreža - npr. može se koristiti za pronalaženje najmanjeg skupa pristupnih tačaka kako bi se osigurala pokrivenost i efikasnost mreže (i slični problemi iz drugih oblasti gdje je potrebno pronaći neku grupu tačaka);
+2. Dizajniranje VLSI integrisanih kola;
+3. Bioinformatici, itd. 
+
+
 ### Zadatak
 1) Definicija prostora pretrage, funkcije cilja, funkcija prilagodljivosti (po mogućnosti), komponente rješenja.
 2) Pohlepni pristup rješavanju problema gdje treba definisati  pohlepnu funkciju, dodavanje komponente u rješenje.
