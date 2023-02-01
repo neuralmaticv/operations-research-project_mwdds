@@ -81,9 +81,11 @@ Ovaj problem ima mnogo praktičnih primjena:
 
 ### Literatura
 
-* Nakkala, M.R., Singh, A. (2020). Heuristics for Minimum Weight Directed Dominating Set Problem. In: Singh, P., Sood, S., Kumar, Y., Paprzycki, M., Pljonkin, A., Hong, WC. (eds) Futuristic Trends in Networks and Computing Technologies. FTNCT 2019. Communications in Computer and Information Science, vol 1206. Springer, Singapore. https://doi.org/10.1007/978-981-15-4451-4_39
+* Nakkala, M.R., Singh, A. (2020). Heuristics for Minimum Weight Directed Dominating Set Problem. In: Singh, P., Sood, S., Kumar, Y., Paprzycki, M., Pljonkin, A., Hong, WC. (eds) Futuristic Trends in Networks and Computing Technologies. FTNCT 2019. Communications in Computer and Information Science, vol 1206. Springer, Singapore. [link](https://doi.org/10.1007/978-981-15-4451-4_39)
 
-* Mayra Albuquerque, Thibaut Vidal, An efficient matheuristic for the minimum-weight dominating set problem, Applied Soft Computing, Volume 72, 2018, Pages 527-538, ISSN 1568-4946. https://doi.org/10.1016/j.asoc.2018.06.052.
+* Albuquerque, M., & Vidal, T. (2018). An efficient matheuristic for the minimum-weight dominating set problem. Applied Soft Computing, 72, 527-538. [link](https://doi.org/10.1016/j.asoc.2018.06.052)
+
+* Jovanovic, R., Tuba, M., & Simian, D. (2010). Ant colony optimization applied to minimum weight dominating set problem. 12th WSEAS International Conference on Automatic Control, Modelling and Simulation, ACMOS '10. 322-326. [link](https://www.researchgate.net/publication/262354402_Ant_colony_optimization_applied_to_minimum_weight_dominating_set_problem)
 
 
 ### Neki korisni linkovi:
