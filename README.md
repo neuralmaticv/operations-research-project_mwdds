@@ -56,6 +56,7 @@ Ovaj problem ima mnogo praktičnih primjena:
 2. Dizajniranje VLSI integrisanih kola;
 3. Bioinformatici, itd. 
 
+---
 
 ### Zadatak
 1) Definicija prostora pretrage, funkcije cilja, funkcija prilagodljivosti (po mogućnosti), komponente rješenja.
