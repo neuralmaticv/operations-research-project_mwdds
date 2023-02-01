@@ -108,9 +108,15 @@ Ovaj problem ima mnogo praktičnih primjena:
 
 
 ### TODO lista:
-1. Uraditi implementaciju algoritama u C++
-2. Dodatno poboljšati implementacije nekih algoritama
-3. Dodatno istražiti i iskoristiti pakete koji su navedeni u dijelu [korisni linkovi](#neki-korisni-linkovi-)
+- [ ] Pustiti algoritme na nekim instancama iz rada "Ant Colony Optimization Applied to Minimum Weight Dominating Set Problem" - [instance su dostupne ovdje](https://mail.ipb.ac.rs/~rakaj/home/BenchmarkMWDSP.htm)
+- [ ] Uraditi paralelizaciju
+1. Greedy algoritam:
+    - [ ] prilikom sortiranja cvorova, uzeti u obzir i stepen cvora. (npr. `Wi*(1 - (Di * 0.001)`)
+2. Genetski algoritam:
+   - [ ] uvesti elitizaciju (elitism) - odabrati samo par najboljih jedinki
+   - [ ] penalizovati nedopustiva rjesenja
+   - [ ] dodati local search  
+
 
 ### Licenca
 TODO: Za dodati.
