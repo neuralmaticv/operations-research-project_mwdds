@@ -121,4 +121,4 @@ Ovaj problem ima mnogo praktičnih primjena:
 
 
 ### Licenca
-TODO: Za dodati.
+[GNU General Public License v3.0](https://github.com/vladocodes/operations-research-project_mwdds/blob/main/LICENSE)
