@@ -16,7 +16,7 @@
 ## Opis projekta
 **Tema projekta:** Minimum weight directed dominating set problem
 
-**Autori:** [Vladimir Mijić](https://github.com/vladocodes) 
+**Autori:** [Vladimir Mijić](https://github.com/neuralmaticv) 
 
 ### Problem
 U teoriji grafova, minimum weighted directed dominating set (MWDDS) problem je optimizacioni problem koji se odnosi na
@@ -121,4 +121,4 @@ Ovaj problem ima mnogo praktičnih primjena:
 
 
 ### Licenca
-[GNU General Public License v3.0](https://github.com/vladocodes/operations-research-project_mwdds/blob/main/LICENSE)
+[GNU General Public License v3.0](https://github.com/neuralmaticv/operations-research-project_mwdds/blob/main/LICENSE)
