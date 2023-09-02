@@ -1,15 +1,17 @@
 # Projekat za predmet Operaciona istraživanja
 
 ## Sadržaj:
-* [Opis projekta](#opis-projekta)
-    * [Problem](#problem)
-    * [Zadatak](#zadatak)
-* [Struktura repozitorijuma](#struktura-repozitorijuma)
-* [Rezultati](#rezultati)
-* [Literatura](#literatura)
-* [Korisni linkovi](#neki-korisni-linkovi)
-* [TODO lista](#todo-lista)
-* [Licenca](#licenca)
+- [Projekat za predmet Operaciona istraživanja](#projekat-za-predmet-operaciona-istraživanja)
+  - [Sadržaj:](#sadržaj)
+  - [Opis projekta](#opis-projekta)
+    - [Problem](#problem)
+    - [Zadatak](#zadatak)
+    - [Struktura repozitorijuma:](#struktura-repozitorijuma)
+    - [Rezultati](#rezultati)
+    - [Literatura](#literatura)
+    - [Neki korisni linkovi:](#neki-korisni-linkovi)
+    - [TODO lista:](#todo-lista)
+    - [Licenca](#licenca)
 
 ---
 
@@ -71,9 +73,10 @@ Ovaj problem ima mnogo praktičnih primjena:
 ### Struktura repozitorijuma:
 - `/docs` 	neki radovi na ovu temu
 - `/instances` 	instance grafova, podijeljene po dimenziji u tri skupa
-- `/main`	glavni kod za testiranje različitih algoritama
+- `/main`	implementacije algoritama
+- `/notebooks` 	primjeri korištenja algoritama
 - `/results` 	rezultati i seminarski rad
-- `/scripts`  skripte korištene prilikom izrade projekta
+- `/utils`  pomoćne skripte za rad sa grafovima
 
 ### Rezultati
 `TODO: dodati tabelarni prikaz ili screenshot-ove`
