@@ -47,11 +47,11 @@ class Individual:
             if vertex == 0:
                 outgoing_edges = [edge for edge in edges if edge[0] == i]
                 for edge in outgoing_edges:
-                    if self.chromosome[1] == 1:
+                    if self.chromosome[edge[1]] == 1:
                         break
-                else:
-                    total_weight = max_weight
-                    break
+            else:
+                total_weight = max_weight
+                break
 
         if total_weight == max_weight:
             self.fitness = max_weight, -1
