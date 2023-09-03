@@ -1,7 +1,7 @@
 import re
 
 
-def read_graph(instance_path):
+def read_graph_instance(instance_path):
     """Reads a graph from a file and returns vertices weights and edges.
 
     Args:
@@ -37,27 +37,7 @@ def read_graph(instance_path):
 
     return vertices_weights, edges
 
-def read_graph_from_file(file_path):
-    vertices_weight = {}
-    edges = []
-    vertice_index = 0
-
-    with open(file_path, 'r') as file:
-        lines = file.readlines()
-
-        for line in lines:
-            line = line.strip()
-
-            if line.isdigit():
-                vertices_weight[vertice_index] = int(line)
-                vertice_index += 1
-            else:
-                u, v = map(int, line.split())
-                edges.append((u-1, v-1))
-
-    return vertices_weight, edges
-
-def read_graph_from_rakaj(file_path):
+def read_rakaj_graph_instance(file_path):
     vertices_weight = {}
     edges = []
 
