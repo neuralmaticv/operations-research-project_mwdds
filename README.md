@@ -18,8 +18,7 @@
 ## Opis projekta
 **Tema projekta:** Minimum weight directed dominating set problem
 
-**Autori:** [Vladimir Mijić](https://github.com/neuralmaticv) 
-
+**Autori:** [Vladimir Mijić](https://github.com/neuralmaticv) i [Bojan Gavrić](https://github.com/BokaG)
 ### Problem
 U teoriji grafova, minimum weighted directed dominating set (MWDDS) problem je optimizacioni problem koji se odnosi na
 pronalaženje najmanjeg podskupa čvorova u usmjerenom težinskom grafu (težine su na čvorovima) tako da svaki čvor 
@@ -89,6 +88,12 @@ Ovaj problem ima mnogo praktičnih primjena:
 * Albuquerque, M., & Vidal, T. (2018). An efficient matheuristic for the minimum-weight dominating set problem. Applied Soft Computing, 72, 527-538. [link](https://doi.org/10.1016/j.asoc.2018.06.052)
 
 * Jovanovic, R., Tuba, M., & Simian, D. (2010). Ant colony optimization applied to minimum weight dominating set problem. 12th WSEAS International Conference on Automatic Control, Modelling and Simulation, ACMOS '10. 322-326. [link](https://www.researchgate.net/publication/262354402_Ant_colony_optimization_applied_to_minimum_weight_dominating_set_problem)
+
+* Vazirani, V. V. (2003). Approximation algorithms. Springer. [link](https://link.springer.com/book/10.1007/978-3-662-04565-7)
+
+* Williamson, D. P., & Shmoys, D. B. (2011). The design of approximation algorithms. Cambridge University Press. [link](https://www.designofapproxalgs.com/index.php)
+
+* Đukanović, M., & Matić, D. (2022). Uvod u operaciona istraživanja. Prirodno-matematički fakultet, Univerzitet u Banjoj Luci. [link](https://drive.google.com/file/d/18arqs1f0SVbmAzVdUGGJfMxRIP306byn/view)
 
 
 ### Neki korisni linkovi:
