@@ -32,7 +32,8 @@ def read_graph(instance_path):
     # Read and store edges
     for line in lines[num_vertices:num_vertices + num_edges]:
         source, target = map(int, line.strip().split())
-        edges.append((source, target))
+        if (source, target) not in edges and (target, source) not in edges:
+            edges.append((source, target))
 
     return vertices_weights, edges
 
