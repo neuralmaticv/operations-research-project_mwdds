@@ -1,6 +1,5 @@
 import random
-from time import *
-
+import time
 
 class Individual:
     """A class to represent an individual in the population.
@@ -270,7 +269,7 @@ class GeneticAlgorithm:
             print(self.population.individuals)
 
         # run
-        start_time = time()
+        start_time = time.time()
         while self.n_generations > 0:
             # selection
             if self.selection_method == "roulette_wheel":
@@ -310,7 +309,7 @@ class GeneticAlgorithm:
                 print(new_population.individuals)
 
             # check time
-            elapsed_time = time() - start_time
+            elapsed_time = time.time() - start_time
             if elapsed_time > self.max_time:
                 filtered_individuals = self.filter_result(new_population)
                 return min(filtered_individuals, key=lambda x: (x.fitness[0], -x.fitness[1]))
