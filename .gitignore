@@ -14,3 +14,4 @@ test/*
 notebooks/test.ipynb
 notebooks/ga_test.ipynb
 NOTES.md
+data/log/*
