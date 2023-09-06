@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 
 
-def plot_graph(vertices_w, edges, dominating_set, instance_info):
+def plot_graph(vertices_w: dict, edges: list, dominating_set: set, instance_info: str, digraph: bool = False):
     """Plot a graph
 
     Args:
@@ -18,7 +18,13 @@ def plot_graph(vertices_w, edges, dominating_set, instance_info):
     plt.rcParams["figure.figsize"] = [10, 8]
     plt.rcParams["figure.autolayout"] = True
 
-    graph = nx.Graph(edges)
+    if digraph:
+        graph = nx.DiGraph(edges)
+        edges_options = {"arrows": True, "arrowstyle": "->", "arrowsize": 15, "node_size": 1500}
+    else:
+        graph = nx.Graph(edges)
+        edges_options = {"arrows": True, "node_size": 1500}
+
     pos = nx.nx_pydot.graphviz_layout(graph, prog="neato")
     color_map = []
 
@@ -33,12 +39,12 @@ def plot_graph(vertices_w, edges, dominating_set, instance_info):
 
         graph.nodes[node]["weight"] = vertices_w[node]
 
-    options = {"edgecolors": "tab:gray", "node_size": 2000, "alpha": 0.8}
-    nx.draw_networkx_nodes(graph, pos, node_color=color_map, **options)
-    nx.draw_networkx_edges(graph, pos, edgelist=edges, width=1.5, alpha=0.5)
+    nodes_options = {"edgecolors": "tab:gray", "node_size": 1500, "alpha": 0.8}
+    nx.draw_networkx_nodes(graph, pos, node_color=color_map, **nodes_options)
+    nx.draw_networkx_edges(graph, pos, edgelist=edges, width=2, **edges_options)
 
     labels = {
-        n: str(n) + '\nw=' + str(graph.nodes[n]['weight'])
+        n: str(n) + '\nw' + str(graph.nodes[n]['weight'])
         for n in graph.nodes
     }
     nx.draw_networkx_labels(graph, pos, labels=labels, font_size=14, font_color='white')
