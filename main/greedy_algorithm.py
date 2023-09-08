@@ -1,3 +1,5 @@
+import numpy as np
+
 
 # Reference: Vazirani, Vijay V. Approximation algorithms. Springer, 2001.
 def greedy_mwds(vertices_w:dict, edges:list) -> (set, int):
@@ -148,3 +150,42 @@ def greedy_mwdds(vertices_w:dict, edges:list, alpha:float=0.001) -> (set, int):
 
     weight = sum(vertices_w[v] for v in domination_set)
     return domination_set, weight
+
+
+# Reference: Ant Colony Optimization Applied to Minimum Weighted Dominating Set Problem
+def greedy_mwds_aco(vertices_w, edges):
+    '''
+    Color: White: Uncovered, Black: Dominating, Gray: Covered
+    Return MWDS set, Gray set, and the total weights of MWDS
+    :param vertices_w: Dictionary where keys are vertex IDs and values are vertex weights
+    :param edges: List of edges as tuples (source, target)
+    :return: mwds, gray_set, total_wt
+    '''
+    vertices = list(vertices_w.keys())
+    mwds = set()
+    gray_set = set(vertices)
+    white_set = set(vertices)
+    wts_0 = np.array([vertices_w[vertex] for vertex in vertices])
+    wts_1 = wts_0.copy() + 1e-6
+    degrees = np.array([len([e for e in edges if e[0] == v]) for v in vertices])
+    
+    while len(white_set) > 0:
+        covers = np.zeros(len(vertices))
+        for i, v in enumerate(vertices):
+            covers[i] = sum([wts_1[vertices.index(u)] for u, _ in edges if v == u])
+        
+        weights = wts_0 / (1 + covers)
+        weights[list(mwds)] = np.Inf
+        weights[np.logical_and(covers == 0, degrees > 0)] = np.Inf
+        i = np.argmin(weights)
+        
+        mwds.add(vertices[i])
+        gray_set.remove(vertices[i])
+        nb_set = set([v for u, v in edges if u == vertices[i]]).intersection(white_set)
+        gray_set = gray_set.union(nb_set)
+        nb_set.add(vertices[i])
+        white_set = white_set - nb_set - mwds
+        wts_1[list(map(vertices.index, list(nb_set)))] = 0
+    
+    total_ws = sum([vertices_w[vertex] for vertex in mwds])
+    return mwds, total_ws

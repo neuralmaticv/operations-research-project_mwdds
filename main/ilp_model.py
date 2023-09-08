@@ -1,7 +1,7 @@
 from pulp import LpProblem, LpMinimize, LpVariable, LpInteger, lpSum, value, PULP_CBC_CMD
 
 
-def ilp_solver(vertices_w:dict, edges:list) -> (set, int):
+def ilp_mwdds(vertices_w:dict, edges:list) -> (set, int):
     """Solve the Minimum Weighted Directed Domination Set problem using the ILP solver.
 
     Args:
@@ -17,7 +17,7 @@ def ilp_solver(vertices_w:dict, edges:list) -> (set, int):
     """
     vertices = list(vertices_w.keys())
 
-    model = LpProblem("Minimum Weighted Directed Domination Set", LpMinimize)
+    model = LpProblem("mwdds", LpMinimize)
 
     x = LpVariable.dicts("x", vertices, lowBound=0, upBound=1, cat=LpInteger)
 
@@ -31,7 +31,7 @@ def ilp_solver(vertices_w:dict, edges:list) -> (set, int):
         model += constraint >= 1
 
     time_limit_s = 600
-    model.solve(PULP_CBC_CMD(msg=False, maxSeconds=time_limit_s))
+    model.solve(PULP_CBC_CMD(msg=False, timeLimit=time_limit_s))
 
     domination_set = set()
     for i in vertices:
