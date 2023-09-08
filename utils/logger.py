@@ -2,7 +2,7 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
 
-LOG_OUTPUT = os.environ.get("..data/log")
+LOG_OUTPUT = "../data/log/"
 
 def setup_logging(log_dir):
     path = os.path.join(LOG_OUTPUT, log_dir)
