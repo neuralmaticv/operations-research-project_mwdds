@@ -1,0 +1,11 @@
+{
+  "V500E1000": ["0/Test/Problem.dat_500_1000_0"],
+  "V500E2000": ["0/Test/Problem.dat_500_2000_0"],
+  "V500E5000": ["0/Test/Problem.dat_500_5000_0"],
+  "V800E1000": ["0/Test/Problem.dat_800_1000_0"],
+  "V800E2000": ["0/Test/Problem.dat_800_2000_0"],
+  "V800E5000": ["0/Test/Problem.dat_800_5000_0"],
+  "V1000E1000": ["0/Test/Problem.dat_1000_1000_0"],
+  "V1000E5000": ["0/Test/Problem.dat_1000_5000_0"],
+  "V1000E10000": ["0/Test/Problem.dat_1000_10000_0"]
+}
