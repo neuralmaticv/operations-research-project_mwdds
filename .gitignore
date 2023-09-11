@@ -9,14 +9,9 @@ env/*
 instances/rakaj_all/*
 instances/images/*
 !instances/images/.gitkeep
-instances/small/*
-instances/medium/*
-instances/large/*
-!instances/small/small_instances.json
-!instances/medium/medium_instances.json
-!instances/large/large_instances.json
 
 test/*
+results/old/*
 notebooks/test.ipynb
 notebooks/ga_test.ipynb
 NOTES.md
