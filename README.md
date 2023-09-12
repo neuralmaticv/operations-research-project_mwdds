@@ -2,23 +2,24 @@
 
 ## Sadržaj:
 - [Projekat za predmet Operaciona istraživanja](#projekat-za-predmet-operaciona-istraživanja)
-  - [Sadržaj:](#sadržaj)
   - [Opis projekta](#opis-projekta)
     - [Problem](#problem)
     - [Zadatak](#zadatak)
-    - [Struktura repozitorijuma:](#struktura-repozitorijuma)
-    - [Rezultati](#rezultati)
-    - [Literatura](#literatura)
-    - [Neki korisni linkovi:](#neki-korisni-linkovi)
-    - [Licenca](#licenca)
-
+  - [Rezultati](#rezultati)
+  - [Literatura](#literatura)
+  - [Struktura repozitorijuma](#struktura-repozitorijuma)
+  - [Uputstvo za lokalno pokretanje](#uputstvo-za-lokalno-pokretanje)  
+    - [Instalacija](#instalacija)  
+    - [Pokretanje](#pokretanje)
+  - [Neki korisni linkovi](#neki-korisni-linkovi)
+  - [Licenca](#licenca)  
 ---
 
 ## Opis projekta
 **Tema projekta:** Minimum weight directde dominating set problem
 
 **Autori:** [Vladimir Mijić](https://github.com/neuralmaticv) i [Bojan Gavrić](https://github.com/BokaG)
-### Problem
+#### Problem
 U teoriji grafova, minimalni dominantni skup u usmjerenom težinskom grafu (minimum weighted directed dominating set - MWDDS) problem je optimizacioni problem koji se odnosi na
 pronalaženje najmanjeg podskupa čvorova u usmjerenom težinskom grafu (težine su na čvorovima) tako da svaki čvor 
 tog grafa može biti dosegnut iz najmanje jednog čvora koji se nalazi u tom podskupu. Takav podskup se naziva dominantni skup.   
@@ -56,9 +57,8 @@ Ovaj problem ima mnogo praktičnih primjena:
 2. Dizajniranje VLSI integrisanih kola;
 3. Rudarenju podataka (data mining), bioinformatici, itd. 
 
----
 
-### Zadatak
+#### Zadatak
 1) Definicija prostora pretrage, funkcije cilja, funkcija prilagodljivosti (po mogućnosti), komponente rješenja.
 2) Pohlepni pristup rješavanju problema gdje treba definisati  pohlepnu funkciju, dodavanje komponente u rješenje.
 3) Odabrati genetski ili VNS pristup
@@ -67,6 +67,7 @@ Ovaj problem ima mnogo praktičnih primjena:
 
 4) Implementirati model u [PuLP](https://coin-or.github.io/pulp/)
 
+---
 
 ### Struktura repozitorijuma:
 - `/docs` 	seminarski rad i još neki radovi na ovu temu
@@ -75,10 +76,14 @@ Ovaj problem ima mnogo praktičnih primjena:
 - `/notebooks` 	Jupyter notebook-ovi za testiranje algoritama i vizualizaciju.
 - `/results` 	eksperimentalni rezultati
 - `/utils`  pomoćne skripte
+---
 
 ### Rezultati
-`TODO: dodati tabelarni prikaz ili screenshot-ove`
+![Primjer minimalnog dominantnog skupa u usmjerenom težinskom grafu](https://github.com/neuralmaticv/operations-research-project_mwdds/blob/main/instances/images/instance_05_06_graph_bhs.png)
 
+![Rezultati za testne instance](https://github.com/neuralmaticv/operations-research-project_mwdds/blob/main/results/images/test_results_overview.png)
+
+---
 
 ### Literatura
 
@@ -94,6 +99,35 @@ Ovaj problem ima mnogo praktičnih primjena:
 
 * Đukanović, M., & Matić, D. (2022). Uvod u operaciona istraživanja. Prirodno-matematički fakultet, Univerzitet u Banjoj Luci. [link](https://drive.google.com/file/d/18arqs1f0SVbmAzVdUGGJfMxRIP306byn/view)
 
+---
+
+### Uputstvo za lokalno pokretanje
+1. Klonirajte repozitorij na svoj lokalni računar:  
+   ova komanda će kreirati folder `mwdds_test` i u njemu klonirati projekat
+   ```bash
+   git clone https://github.com/neuralmaticv/operations-research-project_mwdds.git mwdds_test
+   cd mwdds_test
+   ```
+3. Kreiranje virtuelnog okruženja i instaliranje potrebnih paketa
+   ```bash
+   python -m venv venv
+
+   # za operativni sistem zasnovan na UNIX-u
+   source venv/bin/activate
+
+   # za operativni sistem Windows
+   venv\Scripts\activate
+
+   pip install -r requirements.txt
+   ```
+4. Pokretanje Jupyter Notebook-a:
+   ```bash
+   jupyter notebook
+   ```
+   Jupyter Notebook će se pokrenuti u vašem web pregledaču i sada možete otvoriti postojeće notebook-ove iz foldera `/notebooks` i raditi s njima.
+
+   
+---
 
 ### Neki korisni linkovi:
 
