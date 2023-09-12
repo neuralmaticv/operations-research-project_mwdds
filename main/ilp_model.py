@@ -23,10 +23,10 @@ def ilp_mwdds(vertices_w:dict, edges:list) -> (set, int):
 
     model += lpSum([vertices_w[i] * x[i] for i in vertices])
 
-    for v in vertices:
-        constraint = x[v]
+    for i in vertices:
+        constraint = x[i]
         for e in edges:
-            if e[1] == v:
+            if e[1] == i:
                 constraint += x[e[0]]
         model += constraint >= 1
 

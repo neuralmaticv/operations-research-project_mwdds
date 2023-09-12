@@ -248,7 +248,7 @@ class Population:
 
 
 class GeneticAlgorithm:
-    def __init__(self, graph, fitness_fn, max_time=None, max_no_improvement=None, **kwargs):
+    def __init__(self, graph, fitness_fn, max_time=600, max_no_improvement=None, **kwargs):
         self.graph = graph
         self.fitness_fn = fitness_fn
         self.max_time = max_time
