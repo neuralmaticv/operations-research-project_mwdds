@@ -4,14 +4,9 @@ main/__pycache__/*
 utils/__pycache__/*
 env/*
 
-# results/*
-# !results/.gitkeep
 instances/rakaj_all/*
-instances/images/*
-!instances/images/.gitkeep
-
 test/*
-results/old/*
+
 notebooks/test.ipynb
 notebooks/ga_test.ipynb
 NOTES.md
