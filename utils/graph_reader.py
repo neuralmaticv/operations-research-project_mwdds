@@ -1,5 +1,29 @@
 import re
+import random
 
+def read_graph_instance_networkrepo(instance_path):
+    vertices_weights = {}
+    edges = set()
+
+    with open(instance_path, 'r') as f:
+        lines = f.readlines()
+
+    header = lines[1].split()
+    num_vertices = int(header[0])
+    # num_edges = int(header[2])
+
+    # generate random weight for each vertex in the range [20, 70]
+    for vertex_id in range(1, num_vertices + 1):
+        weight = random.randint(20, 70)
+        vertices_weights[vertex_id] = weight
+
+    # store edges
+    for line in lines[2:]:
+        source, target = map(int, line.strip().split())
+
+        edges.add((source, target))
+
+    return vertices_weights, list(edges)
 
 def read_graph_instance(instance_path):
     """Reads a graph from a file and returns vertices weights and edges.
