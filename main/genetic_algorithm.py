@@ -7,18 +7,18 @@ logger = logging.getLogger("main")
 def is_valid(graph, individual, initial=False):
     graph.reset_colors()
 
-    logger.info(f"Individual: {individual}")
+    # logger.info(f"Individual: {individual}")
 
     for i in range(len(individual)):
         if individual[i] == 1:
             graph.color_vertex(graph.vertices[i], 2)
     
-    logger.info(graph.white_vertices)
-    logger.info(graph.gray_vertices)
-    logger.info(graph.black_vertices)
-    logger.info(sum([vertex.weight for vertex in graph.black_vertices]))
-    logger.info("")
-    logger.info("")
+    # logger.info(graph.white_vertices)
+    # logger.info(graph.gray_vertices)
+    # logger.info(graph.black_vertices)
+    # logger.info(sum([vertex.weight for vertex in graph.black_vertices]))
+    # logger.info("")
+    # logger.info("")
             
     if len(graph.white_vertices) == 0:
         return True
@@ -54,21 +54,12 @@ class Individual:
             self.fitness = 0
 
     def mutate(self):
-        # swap
-        # logger.info("Swapping")
+        logger.info("Performing mutation on individual...")
         # logger.info(f"Before: {self.chromosome}")
-        # idx1, idx2 = self.get_uniqe_ids()
-        
-        # self.chromosome[idx1], self.chromosome[idx2] = self.chromosome[idx2], self.chromosome[idx1]
-        # logger.info(f"After: {self.chromosome}")
-            
-        # return self
-        logger.info("Mutating")
-        logger.info(f"Before: {self.chromosome}")
         for i in range(len(self.chromosome)):
             if random.random() < 0.5:
                 self.chromosome[i] = 1 - self.chromosome[i]
-        logger.info(f"After: {self.chromosome}")
+        # logger.info(f"After: {self.chromosome}")
                 
         return self
     
@@ -95,6 +86,12 @@ class Population:
         self.graph = graph
         self.source_vertices = [vertex.id - 1 for vertex in graph.source_vertices] # vertices with in-degree 0
         self.individuals = self._initialize_population()
+
+    def get_sorted_individuals(self, first_n=0):
+        if first_n > 0 and first_n < len(self.individuals):
+            return sorted(self.individuals, key=lambda individual: individual.fitness)[:first_n]
+
+        return sorted(self.individuals, key=lambda individual: individual.fitness)
 
     def _gen_by_source_vertices(self, max_number):
         chromosome_length = len(self.graph.vertices)
@@ -182,7 +179,7 @@ class Population:
         
         self.normalized_proportions = normalized_proportions
 
-    def selection(self, method='tournament'):
+    def selection(self, method='tournament', tournament_size=2):
         if method == 'roulette_wheel':
             total = 0.0
             best_individual = min(self.individuals, key=lambda individual: individual.fitness)
@@ -200,16 +197,15 @@ class Population:
             # If we didn't find an individual, return the best one
             return best_individual
         elif method == 'tournament':
-            # Select two random individuals
-            individual1 = random.choice(self.individuals)
-            individual2 = random.choice(self.individuals)
-            
-            # Ensure that the two selected individuals are different
-            while individual1 == individual2:
-                individual2 = random.choice(self.individuals)
-            
-            # Select the better of the two individuals
-            return min(individual1, individual2, key=lambda individual: individual.fitness)
+            # select random sample of individuals and return the best one
+            tournament_individuals = random.sample(self.individuals, tournament_size)
+
+            # ensure that selected individuals are different
+            while len(set(tournament_individuals)) != len(tournament_individuals):
+                tournament_individuals = random.sample(self.individuals, tournament_size)
+
+            # select the better of the k individuals
+            return min(tournament_individuals, key=lambda individual: individual.fitness)
 
     def single_point_crossover(self, individual1, individual2, mutation_probability=0.05):
         crossover_point = random.randint(1, len(individual1.chromosome) - 1)
@@ -233,6 +229,30 @@ class Population:
         child2.fitness= fitness_func(self.graph, child2)        
         
         return child1, child2
+    
+    def two_point_crossover(self, individual1, individual2, mutation_probability=0.05):
+        crossover_point1 = random.randint(1, len(individual1.chromosome) // 2)
+        crossover_point2 = random.randint(len(individual1.chromosome) // 2, len(individual1.chromosome) - 1)
+
+        child1 = Individual(chromosome_length=len(individual1.chromosome))
+        child2 = Individual(chromosome_length=len(individual1.chromosome))
+
+        child1.chromosome = individual1.chromosome[:crossover_point1] + individual2.chromosome[crossover_point1:crossover_point2] + individual1.chromosome[crossover_point2:]
+        child2.chromosome = individual2.chromosome[:crossover_point1] + individual1.chromosome[crossover_point1:crossover_point2] + individual2.chromosome[crossover_point2:]
+
+        # mutation of childrens
+        child1, child2 = self.mutation(child1, child2, mutation_probability)
+
+        # ensure that results are valid/feasible (source vertices are selected)
+        for i in range(len(child1.chromosome)):
+            if i in self.source_vertices:
+                child1.chromosome[i] = 1
+                child2.chromosome[i] = 1
+
+        child1.fitness = fitness_func(self.graph, child1)
+        child2.fitness= fitness_func(self.graph, child2)
+
+        return child1, child2        
     
     def mutation(self, child1, child2, mutation_probability):
         new_child1 = Individual(init=child1.chromosome)
@@ -267,17 +287,25 @@ class GeneticAlgorithm:
             self.n_generations = 100
         if not hasattr(self, 'population_size'):
             self.population_size = 100
+        if not hasattr(self, 'percent_to_remove'):
+            self.percent_to_remove = 0.15
+        if not hasattr(self, 'n_elite'):
+            self.n_elite = 3
         if not hasattr(self, 'selection_method'):
             self.selection_method = 'tournament'
+        if not hasattr(self, 'tournament_size'):
+            self.tournament_size = 3
         if not hasattr(self, 'crossover_probability'):
-            self.crossover_probability = 0.8
+            self.crossover_probability = 0.95 # NOTE was 0.8
+        if not hasattr(self, 'two_point_crossover_prob'):
+            self.two_point_crossover_prob = 0.8
         if not hasattr(self, 'mutation_probability'):
             self.mutation_probability = 0.05
         if not hasattr(self, 'mutation_increase_factor'):
             self.mutation_increase_factor = 1.1
         if not hasattr(self, 'inc_mutation'):
             self.inc_mutation = 10
-        
+
         self.population = Population(self.graph, self.population_size)
     
     def get_fitness_over_time(self):
@@ -295,36 +323,58 @@ class GeneticAlgorithm:
         logger.info("Initial population:")
         for individual in self.population.individuals:
             logger.info(f"chromosome: {individual.chromosome}, fitness: {individual.fitness}")
-        self.population._calc_normalized_proportions()
-        
-        
+        # self.population._calc_normalized_proportions()
+
         logger.info("Starting the algorithm...")
         start = time.time()
         while (not self.has_converged()) and (self.running_time < self.max_time):
             logger.info(f"Generation {self.gen_counter}")
+            new_population = []
 
+            # get elite individuals
+            elite_individuals = self.population.get_sorted_individuals(first_n=self.n_elite)
+            for individual in elite_individuals:
+                logger.info(f"Elite fitness: {individual.fitness}")
+            new_population += elite_individuals
+
+            # selection phase
             logger.info("Selection...")
-            # select 1/2 of the initial population
             selected_individuals = []
-            for _ in range(int(self.population_size / 2)):
-                selected_individuals.append(self.population.selection(self.selection_method))
+            for _ in range(int(self.population_size)):
+                selected_individuals.append(self.population.selection(self.selection_method, self.tournament_size))
             
             for i in range(0, len(selected_individuals), 2):
                 individual1 = selected_individuals[i]
                 individual2 = selected_individuals[i + 1]
 
+                logger.info(f"pt1: len{len(individual1.chromosome)}, fitness: {individual1.fitness}")
+                logger.info(f"pt2: len{len(individual2.chromosome)}, fitness: {individual2.fitness}")
+
                 # crossover of selected individuals
                 if random.uniform(0, 1) < self.crossover_probability:
                     logger.info("Crossover...")
-                    ch1, ch2 = self.population.single_point_crossover(individual1, individual2, self.mutation_probability)
-                    self.population.individuals.append(ch1)
-                    self.population.individuals.append(ch2)                 
+                    if random.uniform(0, 1) < self.two_point_crossover_prob:
+                        logger.info("Two point crossover")
+                        ch1, ch2 = self.population.two_point_crossover(individual1, individual2, self.mutation_probability)
+                    else:
+                        logger.info("Single point crossover")
+                        ch1, ch2 = self.population.single_point_crossover(individual1, individual2, self.mutation_probability)
 
-            logger.info(f"population size: {len(self.population.individuals)}")
-            self.population.individuals = sorted(self.population.individuals, key=lambda individual: individual.fitness)[:self.population_size]
+                    logger.info(f"ch1: len{len(ch1.chromosome)}, fitness: {ch1.fitness}")
+                    logger.info(f"ch2: len{len(ch2.chromosome)}, fitness: {ch2.fitness}")
+                    logger.info("------------------")
+
+                    new_population.append(ch1)
+                    new_population.append(ch2)
+                else:
+                    logger.info("No crossover - adding parents to the new population")
+                    new_population.append(individual1)
+                    new_population.append(individual2)
+
+            self.population.individuals = new_population                    
             logger.info(f"population size: {len(self.population.individuals)}")
             
-            best_fitness = self.population.individuals[0].fitness
+            best_fitness = self.population.get_sorted_individuals(first_n=1)[0].fitness
             self.fitness_over_time.append(best_fitness)
             logger.info(f"Best fitness: {best_fitness}")
 
@@ -341,8 +391,9 @@ class GeneticAlgorithm:
             self.gen_counter += 1
             self.running_time = time.time() - start
 
-        logger.info(f"Best solution: {self.population.individuals[0].chromosome}")
-        logger.info(f"Best fitness: {self.population.individuals[0].fitness}")
+        logger.info(f"Best solution: {self.population.get_sorted_individuals(first_n=1)[0].chromosome}")
+        logger.info(f"Best fitness: {self.population.get_sorted_individuals(first_n=1)[0].fitness}")
+
         if self.gen_counter == self.n_generations:
             logger.info("Algorithm finished due to reaching the maximum number of generations.")
         elif self.no_improvement_counter == self.max_no_improvement:
