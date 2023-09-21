@@ -287,8 +287,6 @@ class GeneticAlgorithm:
             self.n_generations = 100
         if not hasattr(self, 'population_size'):
             self.population_size = 100
-        if not hasattr(self, 'percent_to_remove'):
-            self.percent_to_remove = 0.15
         if not hasattr(self, 'n_elite'):
             self.n_elite = 3
         if not hasattr(self, 'selection_method'):
