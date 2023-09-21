@@ -1,4 +1,7 @@
 {
+  "V50E500": ["0/Test/Problem.dat_50_500_0"],
+  "V50E750": ["0/Test/Problem.dat_50_750_0"],
+  "V50E1000": ["0/Test/Problem.dat_50_1000_0"],
   "V150E750": ["0/Test/Problem.dat_150_750_0"],
   "V150E1000": ["0/Test/Problem.dat_150_1000_0"],
   "V150E2000": ["0/Test/Problem.dat_150_2000_0"],
