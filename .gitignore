@@ -5,9 +5,9 @@ utils/__pycache__/*
 env/*
 
 instances/rakaj_all/*
-test/*
 
 notebooks/test.ipynb
 notebooks/ga_test.ipynb
 NOTES.md
 data/log/*
+results/new/*
