@@ -1,5 +1,5 @@
 from pulp import LpProblem, LpMinimize, LpVariable, LpInteger, lpSum, value, PULP_CBC_CMD
-
+from math import ceil
 
 def ilp_mwdds(vertices_w:dict, edges:list) -> (set, int):
     """Solve the Minimum Weighted Directed Domination Set problem using the ILP solver.
@@ -21,15 +21,21 @@ def ilp_mwdds(vertices_w:dict, edges:list) -> (set, int):
 
     x = LpVariable.dicts("x", vertices, lowBound=0, upBound=1, cat=LpInteger)
 
-    model += lpSum([vertices_w[i] * x[i] for i in vertices])
+    z = {}
+    for vi in vertices:
+        out_degree = sum(1 for (i, j) in edges if i == vi)
+        z[vi] = 1 + out_degree
 
-    for i in vertices:
-        constraint = x[i]
-        for e in edges:
-            if e[1] == i:
-                constraint += x[e[0]]
-        model += constraint >= 1
+    Z = set(z.values())
 
+    model += lpSum(vertices_w[vi] * x[vi] for vi in vertices)
+
+    for vi in vertices:
+        model += x[vi] + lpSum(x[vj] for vj in vertices if (vj, vi) in edges) >= 1
+
+    for q in Z:
+        model += lpSum(ceil(z[vi] / q) * x[vi] for vi in vertices) >= ceil(len(vertices) / q)
+    
     time_limit_s = 600
     model.solve(PULP_CBC_CMD(msg=False, timeLimit=time_limit_s))
 
