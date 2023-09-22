@@ -4,7 +4,7 @@ import os
 
 LOG_OUTPUT = "../data/log/"
 
-def setup_logging(log_dir):
+def setup_logging(log_dir, log_file_name):
     path = os.path.join(LOG_OUTPUT, log_dir)
     os.makedirs(path, exist_ok=True)
 
@@ -13,7 +13,7 @@ def setup_logging(log_dir):
     )
 
     log_handler = TimedRotatingFileHandler(
-        filename=os.path.join(path, "main.log"),
+        filename=os.path.join(path, f"{log_file_name}.log"),
         when="midnight",
         interval=1,
         backupCount=5,

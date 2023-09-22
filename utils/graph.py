@@ -1,6 +1,3 @@
-import logging
-logger = logging.getLogger("main")
-
 class Vertex:
     def __init__(self, id, weight, color=0):
         self.id = id
@@ -91,7 +88,6 @@ class Graph:
                 # logger.info(f"vertex {vertex.id}: g -> b")
         
         if len(self.vertices) != (len(self.black_vertices) + len(self.gray_vertices) + len(self.white_vertices)):
-            logger.error("Number of vertices is not equal to the sum of colored vertices")
             raise Exception("Number of vertices is not equal to the sum of colored vertices")
 
                 
