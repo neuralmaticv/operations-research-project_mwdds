@@ -1,119 +1,208 @@
 import random
 import time
-import logging
 
 
-# Define the functions for calculating scores
-def sum_of_white_successors(vertex):
-    # EQ1: Calculate Ws(u)
+def is_feasible(graph, partial_solution):
+    graph.reset_colors()
+
+    for i in range(len(partial_solution)):
+        if partial_solution[i] == 1:
+            graph.color_vertex(graph.vertices[i], 2)
+
+    # check if all white vertices are colored
+    if len(graph.white_vertices) == 0:
+        return True
+
+    return False
+
+def is_white(vertex):
+    # EQ2: Calculate CLR(u)
+    if vertex.color == 0:
+        return 1
+    return 0
+
+def weighted_sum_of_white_successors(vertex):
+    # Ws(u)
     sum = 0
     for successor in vertex.successors:
         if successor.color == 0:
             sum += successor.weight
     return sum
 
-def clr_vertex(vertex):
-    # EQ2: Calculate CLR(u)
-    if vertex.color == 0:
-        return 1
-    return 0
-
-def wout_degree(vertex):
-    # EQ4: Calculate WOUTdeg(u)
-    sum = 0
+def number_of_white_successors(vertex):
+    # WOUTdeg(u)
+    count = 0
     for successor in vertex.successors:
-        if successor.color == 0:
-            sum += 1
-    return sum
+        count += is_white(successor)
+    
+    return count
 
-def score(vertex):
-    # EQ2: Calculate score(u)
-    return sum_of_white_successors(vertex) + (vertex.weight * clr_vertex(vertex)) / vertex.weight
+def number_of_predecessors(vertex):
+    return vertex.in_degree
 
-def score_tie(vertex):
-    # EQ5: Calculate scoreTie(u)
-    return wout_degree(vertex) + clr_vertex(vertex) / vertex.weight
+def p_score(vertex):
+    # score(u)
+    score = (weighted_sum_of_white_successors(vertex) + is_white(vertex) * vertex.weight) / vertex.weight
+    return score
 
-def repair(graph, individual, initial=False):
+def t_score(vertex):
+    # score_tie(u)
+    score = (number_of_white_successors(vertex) + is_white(vertex)) / vertex.weight
+    return score
+
+def heuristic12(non_black_vertices):
+    '''
+    H1 and H2: in every iteration it tries to select non-black vertex with the highest p-score
+    if two or more vertices have the same p-score, it selects the one with the highest t-score
+    if two or more vertices have the same p-score and t-score, it selects the one arbitrarily (now we just select the first one)
+    '''
+
+    non_black_vertices.sort(key=p_score, reverse=True)
+
+    max_p_score = p_score(non_black_vertices[0])
+    max_p_score_vertices = [non_black_vertices[0]]
+
+    for i in range(1, len(non_black_vertices)):
+        if p_score(non_black_vertices[i]) == max_p_score:
+            max_p_score_vertices.append(non_black_vertices[i])
+        else:
+            break
+    
+    if len(max_p_score_vertices) == 1:
+        return max_p_score_vertices[0]
+    else:
+        max_p_score_vertices.sort(key=t_score, reverse=True)
+        return max_p_score_vertices[0]
+
+    
+def heuristic3(non_black_vertices):
+    '''
+    H3: begins by making all source vertices black
+    if there is tie per p-score, it selects the white vertex with minimum number of predecessors
+    if still tie, it selects the first one
+    if there is no white vertex, it selects the gray vertex with the highest p-score
+    if there is tie per p-score for gray vertices, it selects randomly
+    '''
+
+    non_black_vertices.sort(key=p_score, reverse=True)
+
+    max_p_score = p_score(non_black_vertices[0])
+    max_p_score_vertices = [non_black_vertices[0]]
+
+    for i in range(1, len(non_black_vertices)):
+        if p_score(non_black_vertices[i]) == max_p_score:
+            max_p_score_vertices.append(non_black_vertices[i])
+        else:
+            break
+
+    if len(max_p_score_vertices) == 1:
+        return max_p_score_vertices[0]
+    else:
+        white_vertices = [v for v in max_p_score_vertices if is_white(v)]
+        
+        if len(white_vertices) > 0:
+            white_vertices.sort(key=number_of_predecessors)
+
+            min_predecessors = number_of_predecessors(white_vertices[0])
+            min_predecessors_vertices = [white_vertices[0]]
+
+            for i in range(1, len(white_vertices)):
+                if number_of_predecessors(white_vertices[i]) == min_predecessors:
+                    min_predecessors_vertices.append(white_vertices[i])
+                else:
+                    break
+
+            if len(min_predecessors_vertices) == 1:
+                return min_predecessors_vertices[0]
+            else:
+                return min_predecessors_vertices[random.randint(0, len(min_predecessors_vertices) - 1)]
+        else:        
+            gray_vertices = [v for v in max_p_score_vertices if v.color == 1]
+            gray_vertices.sort(key=p_score, reverse=True)
+
+            max_p_score = p_score(gray_vertices[0])
+            max_p_score_vertices = [gray_vertices[0]]
+
+            for i in range(1, len(gray_vertices)):
+                if p_score(gray_vertices[i]) == max_p_score:
+                    max_p_score_vertices.append(gray_vertices[i])
+                else:
+                    break
+            
+            if len(max_p_score_vertices) == 1:
+                return max_p_score_vertices[0]
+            else:
+                return max_p_score_vertices[random.randint(0, len(max_p_score_vertices) - 1)]
+
+def greedy_heuristics(graph, partial_solution, heuristic_fn):
+    graph.reset_colors()
+    for i in range(len(partial_solution)):
+        if partial_solution[i] == 1:
+            graph.color_vertex(graph.vertices[i], 2)
+
+    while not is_feasible(graph, partial_solution):
+        non_black_vertices = [v for v in graph.vertices if partial_solution[v.id] == 0]
+        v = heuristic_fn(non_black_vertices)
+        partial_solution[v.id] = 1
+
+    return partial_solution
+
+def repair_operator(graph, individual):
     graph.reset_colors()
 
-    # Step 1: Add all source vertices to the solution
+    # add all source vertices to the solution
     for source_vertex in graph.source_vertices:
-        individual.chromosome[source_vertex.id - 1] = 1
+        individual[source_vertex.id] = 1
         graph.color_vertex(source_vertex, 2)
 
     while len(graph.white_vertices) > 0:
         scores = []
 
-        # Step 2: Compute score(u) for all vertices not in the solution
+        # compute p_score(u) for all vertices that are not in the Sd
         for vertex in graph.white_vertices:
-            scores.append((vertex, score(vertex)))
+            scores.append((vertex, p_score(vertex)))
 
-        # Step 3: Select vertex with the highest score
+        # select vertex with the highest score
         max_score = max(scores, key=lambda x: x[1])[1]
         max_score_vertices = [v for v, s in scores if s == max_score]
 
-        if initial:
-            # In case of multiple vertices with the same score, select one by EQ6
-            max_score_vertex = max(max_score_vertices, key=lambda x: score_tie(x))
+        # if there is tie select randomly
+        if len(max_score_vertices) == 1:
+            max_score_vertex = max_score_vertices[0]
         else:
-            # In case of multiple vertices with the same score, select one randomly
             max_score_vertex = random.choice(max_score_vertices)
 
-        # Update the individual and color the selected vertex
-        individual.chromosome[max_score_vertex.id - 1] = 1
+        # update the individual and color the selected vertex
+        individual[max_score_vertex.id] = 1
         graph.color_vertex(max_score_vertex, 2)
 
     return individual
 
 def redundant_removal(graph, individual):
-    # goal is to remove redundant vertices from the solution. node v is redundant if:
-    # sd without v remains directed dominating set
-
-    # we iteratively compute set of redundant nodes and remove all nodes belonging to this set from Sd
-
-    # Step 1: Add all source vertices to the solution
+    # step 1: add all source vertices to the solution
     for source_vertex in graph.source_vertices:
         graph.color_vertex(source_vertex, 2)
     
-    # Step 2: Compute set of redundant vertices
+    # step 2: compute set of redundant vertices
     redundant_vertices = []
     for vertex in graph.vertices:
         if vertex.color == 2:
             graph.color_vertex(vertex, 0)
-            individual.chromosome[vertex.id - 1] = 0
+            individual[vertex.id] = 0
 
             # if Sd is valid without v, then v is redundant
-            if is_valid(graph, individual):
+            if is_feasible(graph, individual):
                 redundant_vertices.append(vertex)
-
-            graph.color_vertex(vertex, 2)
-            individual.chromosome[vertex.id - 1] = 1
+            else:
+                graph.color_vertex(vertex, 2)
+                individual[vertex.id] = 1
     
-    # Step 3: Remove redundant vertices from the solution
+    # step 3: remove redundant vertices from the solution
     for vertex in redundant_vertices:
         graph.color_vertex(vertex, 0)
-        individual.chromosome[vertex.id - 1] = 0
-
+        individual[vertex.id] = 0
     
-    individual = repair(graph, individual)
-
     return individual
-
-
-def is_valid(graph, individual):
-    graph.reset_colors()
-
-    for i in range(len(individual.chromosome)):
-        if individual.chromosome[i] == 1:
-            graph.color_vertex(graph.vertices[i], 2)
-
-    # Check if all white vertices are colored
-    if len(graph.white_vertices) == 0:
-        return True
-
-    return False
-
 
 
 class Individual:
@@ -149,13 +238,18 @@ class Individual:
     def __repr__(self):
         return self.__str__()
     
-    def fitness_func(self, graph, initial=False):
-        if is_valid(graph, self):
-            self = redundant_removal(graph, self)
+    def fitness_fn(self, graph):
+        if is_feasible(graph, self.chromosome):            
+            if random.random() < 0.2:
+                self.chromosome = redundant_removal(graph, self.chromosome)
+
             self.fitness = sum([graph.vertices[i].weight for i, _ in enumerate(self.chromosome) if self.chromosome[i] == 1])
         else:
-            self = repair(graph, self, initial)
-            self.fitness = sum([graph.vertices[i].weight for i, _ in enumerate(self.chromosome) if self.chromosome[i] == 1])
+            if random.random() < 0.2:
+                self.chromosome = repair_operator(graph, self.chromosome)
+                self.fitness = sum([graph.vertices[i].weight for i, _ in enumerate(self.chromosome) if self.chromosome[i] == 1])
+            else:
+                self.fitness = graph.total_weight
 
 
 class Population:    
@@ -163,7 +257,7 @@ class Population:
         self.population_size = population_size
         self.normalized_proportions = None
         self.graph = graph
-        self.source_vertices = [vertex.id - 1 for vertex in graph.source_vertices] # vertices with in-degree 0
+        self.source_vertices = [vertex.id for vertex in graph.source_vertices] # vertices with in-degree 0
         self.individuals = self._initialize_population()
 
     def get_sorted_individuals(self, first_n=0):
@@ -182,12 +276,15 @@ class Population:
             for i in range(chromosome_length):
                 if i in self.source_vertices:
                     individual[i] = 1
-                else:
-                    individual[i] = random.randint(0, 1)
-            
+        
+            if random.random() < 0.3:
+                individual = greedy_heuristics(self.graph, individual, heuristic3)
+            elif random.random() < 0.5:
+                individual = greedy_heuristics(self.graph, individual, heuristic12)
+
             individual = Individual(init=individual)
             population.append(individual)
-        
+            
         return population
     
     def _gen_random(self, max_number):
@@ -201,6 +298,9 @@ class Population:
                 if i not in self.source_vertices:
                     individual[i] = random.randint(0, 1)
             
+            if random.random() < 0.3:
+                individual = greedy_heuristics(self.graph, individual, heuristic12)
+
             individual = Individual(init=individual)
             population.append(individual)
         
@@ -229,34 +329,17 @@ class Population:
         population = []
 
         # generate individuals with source vertices
-        max_source_individuals = int(self.population_size * 0.9)
+        max_source_individuals = int(self.population_size * 0.01)
         population += self._gen_by_source_vertices(max_source_individuals)
 
         # generate random individuals
         max_random_individuals = self.population_size - max_source_individuals
         population += self._gen_random(max_random_individuals)
 
-        # generate individuals with highest degree vertices
-        # max_highest_degree_individuals = self.population_size - max_source_individuals - max_random_individuals
-        # population += self._gen_by_highest_degree_vertices(max_highest_degree_individuals)
-
         for individual in population:
-            individual.fitness_func(self.graph, initial=True)
+            individual.fitness_fn(self.graph)
     
         return population
-
-    def _calc_normalized_proportions(self):
-        all_fitnesses = [individual.fitness for individual in self.individuals]
-        sum_fitnesses = sum(all_fitnesses)
-
-        # lower fitness -> higher probability of selection
-        inverse_proportions = [sum_fitnesses / fitness for fitness in all_fitnesses]
-
-        # Normalize the proportions
-        proportions_sum = sum(inverse_proportions)
-        normalized_proportions = [proportion / proportions_sum for proportion in inverse_proportions]
-        
-        self.normalized_proportions = normalized_proportions
 
     def selection(self, method='tournament', tournament_size=2):
         if method == 'roulette_wheel':
@@ -273,17 +356,13 @@ class Population:
                 if proportion >= selected_value:
                     return self.individuals[i]
             
-            # If we didn't find an individual, return the best one
             return best_individual
         elif method == 'tournament':
-            # select random sample of individuals and return the best one
             tournament_individuals = random.sample(self.individuals, tournament_size)
 
-            # ensure that selected individuals are different
             while len(set(tournament_individuals)) != len(tournament_individuals):
                 tournament_individuals = random.sample(self.individuals, tournament_size)
 
-            # Select the better of the k individuals
             return min(tournament_individuals, key=lambda individual: individual.fitness)
 
     def single_point_crossover(self, individual1, individual2, mutation_probability=0.05):
@@ -295,17 +374,10 @@ class Population:
         child1.chromosome = individual1.chromosome[:crossover_point] + individual2.chromosome[crossover_point:]
         child2.chromosome = individual2.chromosome[:crossover_point] + individual1.chromosome[crossover_point:]
 
-        # mutation of childrens
         child1, child2 = self.mutation(child1, child2, mutation_probability)
-
-        # ensure that results are valid/feasible (source vertices are selected)
-        for i in range(len(child1.chromosome)):
-            if i in self.source_vertices:
-                child1.chromosome[i] = 1
-                child2.chromosome[i] = 1
             
-        child1.fitness_func(self.graph)
-        child2.fitness_func(self.graph)        
+        child1.fitness_fn(self.graph)
+        child2.fitness_fn(self.graph)        
         
         return child1, child2
     
@@ -319,21 +391,13 @@ class Population:
         child1.chromosome = individual1.chromosome[:crossover_point1] + individual2.chromosome[crossover_point1:crossover_point2] + individual1.chromosome[crossover_point2:]
         child2.chromosome = individual2.chromosome[:crossover_point1] + individual1.chromosome[crossover_point1:crossover_point2] + individual2.chromosome[crossover_point2:]
 
-        # mutation of childrens
         child1, child2 = self.mutation(child1, child2, mutation_probability)
 
-        # ensure that results are valid/feasible (source vertices are selected)
-        for i in range(len(child1.chromosome)):
-            if i in self.source_vertices:
-                child1.chromosome[i] = 1
-                child2.chromosome[i] = 1
-
-        child1.fitness_func(self.graph)
-        child2.fitness_func(self.graph)
+        child1.fitness_fn(self.graph)
+        child2.fitness_fn(self.graph)
 
         return child1, child2        
 
-    
     def mutation(self, child1, child2, mutation_probability):
         new_child1 = Individual(init=child1.chromosome)
         new_child2 = Individual(init=child2.chromosome)
@@ -345,8 +409,7 @@ class Population:
             new_child2 = child2.mutate()
         
         return new_child1, new_child2
-
-
+    
 class GeneticAlgorithm:
     def __init__(self, graph, max_time=600, max_no_improvement=None, **kwargs):
         self.graph = graph
@@ -358,7 +421,6 @@ class GeneticAlgorithm:
         self.previous_best_fitness = graph.total_weight
         self.running_time = 0
         
-        # Update class attributes with values from kwargs
         for key, value in kwargs.items():
             setattr(self, key, value)
 
@@ -373,15 +435,15 @@ class GeneticAlgorithm:
         if not hasattr(self, 'tournament_size'):
             self.tournament_size = 3
         if not hasattr(self, 'crossover_probability'):
-            self.crossover_probability = 0.95 # NOTE was 0.8
+            self.crossover_probability = 0.95
         if not hasattr(self, 'two_point_crossover_prob'):
             self.two_point_crossover_prob = 0.8
         if not hasattr(self, 'mutation_probability'):
             self.mutation_probability = 0.05
         if not hasattr(self, 'mutation_increase_factor'):
-            self.mutation_increase_factor = 1.1
+            self.mutation_increase_factor = 2
         if not hasattr(self, 'inc_mutation'):
-            self.inc_mutation = 10
+            self.inc_mutation = self.n_generations // 10
 
         self.population = Population(self.graph, self.population_size)
     
@@ -398,11 +460,11 @@ class GeneticAlgorithm:
 
     def run(self):
         start = time.time()
-        
+
         while (not self.has_converged()) and (self.running_time < self.max_time):
             new_population = []
 
-            # get elite individuals
+            # elitism phase
             elite_individuals = self.population.get_sorted_individuals(first_n=self.n_elite)
             new_population += elite_individuals
 
@@ -421,7 +483,7 @@ class GeneticAlgorithm:
                         ch1, ch2 = self.population.two_point_crossover(individual1, individual2, self.mutation_probability)
                     else:
                         ch1, ch2 = self.population.single_point_crossover(individual1, individual2, self.mutation_probability)
-
+                    
                     new_population.append(ch1)
                     new_population.append(ch2)
                 else:
