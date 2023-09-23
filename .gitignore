@@ -4,10 +4,12 @@ main/__pycache__/*
 utils/__pycache__/*
 env/*
 
-instances/rakaj_all/*
-
-notebooks/test.ipynb
-notebooks/ga_test.ipynb
-NOTES.md
 data/log/*
+instances/rakaj_all/*
 results/new/*
+
+notebooks/ga_test.ipynb
+notebooks/deap_test.ipynb
+notebooks/presentation.ipynb
+
+NOTES.md
