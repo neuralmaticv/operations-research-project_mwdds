@@ -47,7 +47,7 @@ Ograničnja obezbjeđuju da svaki čvor u grafu može biti dosegnut iz najmanje 
 
 
 <p align="center">
-$\sum_{(i,j) \in E} x_j \ge x_i$, for all $i \in V$
+$x_i + \sum_{v_j \in \overset{-}{N}_G(v_i)} x_j \geq 1 \quad \forall v_i \in V$
 </p>
   
 <br>
