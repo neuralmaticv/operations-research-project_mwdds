@@ -1,7 +1,7 @@
 import re
 import random
 
-def read_graph_instance_networkrepo(instance_path):
+def read_graph_instance_networkrepo(instance_path: str) -> tuple:
     vertices_weights = {}
     edges = set()
 
@@ -13,7 +13,7 @@ def read_graph_instance_networkrepo(instance_path):
     # num_edges = int(header[2])
 
     # generate random weight for each vertex in the range [20, 70]
-    for vertex_id in range(1, num_vertices + 1):
+    for vertex_id in range(0, num_vertices):
         weight = random.randint(20, 70)
         vertices_weights[vertex_id] = weight
 
@@ -25,7 +25,7 @@ def read_graph_instance_networkrepo(instance_path):
 
     return vertices_weights, list(edges)
 
-def read_graph_instance(instance_path):
+def read_graph_instance(instance_path: str) -> tuple:
     """Reads a graph from a file and returns vertices weights and edges.
 
     Args:
@@ -48,20 +48,22 @@ def read_graph_instance(instance_path):
     with open(instance_path, 'r') as f:
         lines = f.readlines()
 
-    # Read and store vertices' weights
+    # read and store vertices weights
     for line in lines[:num_vertices]:
         weight = int(line.strip())
-        vertices_weights[len(vertices_weights) + 1] = weight
+        vertices_weights[len(vertices_weights)] = weight
 
-    # Read and store edges
+    # read and store edges
     for line in lines[num_vertices:num_vertices + num_edges]:
         source, target = map(int, line.strip().split())
+        source -= 1
+        target -= 1
         if (source, target) not in edges and (target, source) not in edges:
             edges.append((source, target))
 
     return vertices_weights, edges
 
-def read_rakaj_graph_instance(file_path):
+def read_rakaj_graph_instance(file_path: str) -> tuple:
     vertices_weight = {}
     edges = []
 
@@ -72,12 +74,12 @@ def read_rakaj_graph_instance(file_path):
         weights_line_index = lines.index("******************WEIGHTS*****************************\n")
         connections_line_index = lines.index("*****************CONNECTIONS****************\n")
 
-        # Read vertex weights
+        # read vertices weights
         for i in range(weights_line_index + 1, weights_line_index + 1 + num_of_nodes):
             weight = int(lines[i].strip())
             vertices_weight[i - weights_line_index - 1] = weight
 
-        # Read edge connections
+        # read edges
         for i in range(connections_line_index + 1, connections_line_index + 1 + num_of_nodes):
             row = list(map(int, lines[i].split()))
             for v in range(len(row)):

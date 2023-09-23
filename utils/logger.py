@@ -4,7 +4,7 @@ import os
 
 LOG_OUTPUT = "../data/log/"
 
-def setup_logging(log_dir, log_file_name):
+def setup_logging(log_dir: str, log_file_name: str) -> logging.Logger:
     path = os.path.join(LOG_OUTPUT, log_dir)
     os.makedirs(path, exist_ok=True)
 

@@ -2,8 +2,10 @@ import os
 import glob
 import json
 
-def listdir_nohidden(path):
+
+def listdir_nohidden(path: str) -> list:
     return glob.glob(os.path.join(path, 'V*'))
+
 
 def instances_to_json(pt_path: str, json_name: str) -> None:
     def _listdir_problem_types(path):
@@ -35,6 +37,7 @@ def instances_to_json(pt_path: str, json_name: str) -> None:
     
     with open(json_name + ".json", 'w') as json_file:
         json.dump(rakaj_dict, json_file, indent=4)
+
 
 def read_json(json_file_path: str) -> dict:
     with open(json_file_path, 'r') as json_file:
