@@ -54,7 +54,7 @@ def heuristic12(non_black_vertices):
     '''
     H1 and H2: in every iteration it tries to select non-black vertex with the highest p-score
     if two or more vertices have the same p-score, it selects the one with the highest t-score
-    if two or more vertices have the same p-score and t-score, it selects the one arbitrarily (now we just select the first one)
+    if two or more vertices have the same p-score and t-score, it selects the one randomly
     '''
 
     non_black_vertices.sort(key=p_score, reverse=True)
@@ -72,7 +72,7 @@ def heuristic12(non_black_vertices):
         return max_p_score_vertices[0]
     else:
         max_p_score_vertices.sort(key=t_score, reverse=True)
-        return max_p_score_vertices[0]
+        return max_p_score_vertices[random.randint(0, len(max_p_score_vertices) - 1)]
 
     
 def heuristic3(non_black_vertices):
