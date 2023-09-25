@@ -6,7 +6,9 @@ env/*
 
 data/log/*
 instances/rakaj_all/*
-results/new/*
+results/new_res/*
+results/old_res/*
+results/params/*
 
 notebooks/ga_test.ipynb
 notebooks/deap_test.ipynb
