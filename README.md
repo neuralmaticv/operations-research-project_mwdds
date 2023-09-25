@@ -2,17 +2,16 @@
 
 ## Sadržaj:
 - [Projekat za predmet Operaciona istraživanja](#projekat-za-predmet-operaciona-istraživanja)
+  - [Sadržaj:](#sadržaj)
   - [Opis projekta](#opis-projekta)
-    - [Problem](#problem)
-    - [Zadatak](#zadatak)
-  - [Rezultati](#rezultati)
-  - [Literatura](#literatura)
-  - [Struktura repozitorijuma](#struktura-repozitorijuma)
-  - [Uputstvo za lokalno pokretanje](#uputstvo-za-lokalno-pokretanje)  
-    - [Instalacija](#instalacija)  
-    - [Pokretanje](#pokretanje)
-  - [Neki korisni linkovi](#neki-korisni-linkovi)
-  - [Licenca](#licenca)  
+      - [Problem](#problem)
+      - [Zadatak](#zadatak)
+    - [Struktura repozitorijuma:](#struktura-repozitorijuma)
+    - [Rezultati](#rezultati)
+    - [Literatura](#literatura)
+    - [Uputstvo za lokalno pokretanje](#uputstvo-za-lokalno-pokretanje)
+    - [Neki korisni linkovi:](#neki-korisni-linkovi)
+    - [Licenca](#licenca)
 ---
 
 ## Opis projekta
@@ -81,7 +80,7 @@ Ovaj problem ima mnogo praktičnih primjena:
 ### Rezultati
 ![Primjer minimalnog dominantnog skupa u usmjerenom težinskom grafu](https://github.com/neuralmaticv/operations-research-project_mwdds/blob/main/instances/images/instance_05_06_graph_bhs.png)
 
-![Rezultati za testne instance](https://github.com/neuralmaticv/operations-research-project_mwdds/blob/main/results/images/test_results_overview.png)
+![Rezultati za testne instance](https://github.com/neuralmaticv/operations-research-project_mwdds/blob/main/results/images/small_results_overview_bhs.png)
 
 ---
 
