@@ -6,12 +6,12 @@
   - [Opis projekta](#opis-projekta)
       - [Problem](#problem)
       - [Zadatak](#zadatak)
-    - [Struktura repozitorijuma:](#struktura-repozitorijuma)
-    - [Rezultati](#rezultati)
-    - [Literatura](#literatura)
-    - [Uputstvo za lokalno pokretanje](#uputstvo-za-lokalno-pokretanje)
-    - [Neki korisni linkovi:](#neki-korisni-linkovi)
-    - [Licenca](#licenca)
+  - [Struktura repozitorijuma:](#struktura-repozitorijuma)
+  - [Rezultati](#rezultati)
+  - [Literatura](#literatura)
+  - [Uputstvo za lokalno pokretanje](#uputstvo-za-lokalno-pokretanje)
+  - [Neki korisni linkovi:](#neki-korisni-linkovi)
+  - [Licenca](#licenca)
 ---
 
 ## Opis projekta
