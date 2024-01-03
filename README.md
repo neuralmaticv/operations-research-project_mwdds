@@ -15,7 +15,7 @@
 ---
 
 ## Opis projekta
-**Tema projekta:** Minimum weight directde dominating set problem
+**Tema projekta:** Minimum weight directed dominating set problem
 
 **Autori:** [Vladimir Mijić](https://github.com/neuralmaticv) i [Bojan Gavrić](https://github.com/BokaG)
 #### Problem
